@@ -1,0 +1,22 @@
+version: '2'
+
+
+
+services:
+    mysql:
+        restart: always
+        image: mysql:5.7
+        container_name: mysql
+        env_file:
+            - ./config/envfile/mysql.env
+        volumes:
+            # Using a custom MySQL configuration file
+            - ./config/mysql:/etc/mysql/conf.d
+            # Create a data directory on the host system (outside the container)
+            # - ${APP_NAME}_production_mysql_data:/var/lib/mysql
+            - ./mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"
+      
+
+    
